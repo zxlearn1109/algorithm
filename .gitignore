@@ -21,3 +21,31 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/.idea/.gitignore
+/algorithm.iml
+/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+/.gradle/buildOutputCleanup/cache.properties
+/.gradle/checksums/checksums.lock
+/.idea/compiler.xml
+/.idea/leetcode/editor.xml
+/.gradle/6.1/executionHistory/executionHistory.bin
+/.gradle/6.1/executionHistory/executionHistory.lock
+/.gradle/4.10.2/fileHashes/fileHashes.bin
+/.gradle/6.1/fileHashes/fileHashes.bin
+/.gradle/4.10.2/fileHashes/fileHashes.lock
+/.gradle/6.1/fileHashes/fileHashes.lock
+/.gradle/4.10.2/gc.properties
+/.gradle/6.1/gc.properties
+/.gradle/vcs-1/gc.properties
+/.idea/gradle.xml
+/gradle/wrapper/gradle-wrapper.properties
+/gradlew
+/gradlew.bat
+/.idea/jarRepositories.xml
+/.gradle/4.10.2/fileChanges/last-build.bin
+/.gradle/6.1/fileChanges/last-build.bin
+/.gradle/checksums/md5-checksums.bin
+/.idea/misc.xml
+/.gradle/buildOutputCleanup/outputFiles.bin
+/.gradle/checksums/sha1-checksums.bin
+/.idea/vcs.xml

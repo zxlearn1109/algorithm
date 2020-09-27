@@ -4,7 +4,7 @@ import java.io.File;
 
 public class LinkedListPackageInit {
     public static void main(String[] args) {
-        String path = "D:\\IdeaProjects\\algorithm\\src\\main\\java\\链表";
+        String path = "D:\\Projects\\algorithm\\src\\main\\java\\链表";
         String str = "P210\t两两交换链表中的节点\tleetcode 24. lintcode 451.\t中\n" +
                 "P195\t链表加一\tleetcode 369. lintcode 904.\t中\n" +
                 "P187\t奇偶链表\tleetcode 328. lintcode 1292.\t中\n" +
