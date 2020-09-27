@@ -4,16 +4,16 @@ import java.io.File;
 
 public class TwoPointerPackageInit {
 
-    public static void main(String[] args) {
+    static String path = "D:\\IdeaProjects\\algorithm\\src\\main\\java";
 
-        String replace = TwoPointerPackageInit.class.getName().
-                replace("." + TwoPointerPackageInit.class.getSimpleName(), "");
-        System.out.println(replace);
+    public static void main(String[] args) {
+        genLinkedList(TwoPointerPackageInit.class);
     }
 
 
-    public void te() {
-        String path = "D:\\IdeaProjects\\algorithm\\src\\main\\java\\双指针";
+    public static void genLinkedList(Class clazz) {
+        String prePath = genPath(clazz);
+
         String str = "P221\t旋转字符串\tleetcode 796.\t易\n" +
                 "P217\t移除数组中指定数字\tleetcode 27. lintcode 172.\t易\n" +
                 "P180\t快乐数\tleetcode 202. lintcode 488.\t易\n" +
@@ -47,9 +47,20 @@ public class TwoPointerPackageInit {
             String name = strs[1];
             String num = strs[2].split("\\.")[0].split(" ")[1];
 
-            String newPath = path + "\\" + name + "_" + num;
+            String newPath = prePath + "\\" + name + "_" + num;
             File file = new File(newPath);
             if (!file.exists()) file.mkdirs();
         }
+    }
+
+    private static String genPath(Class clazz) {
+        String fp = path;
+        String replace = clazz.getName().
+                replace("." + clazz.getSimpleName(), "");
+        String[] split = replace.split("\\.");
+        for (String s : split) {
+            fp += "\\" + s;
+        }
+        return fp;
     }
 }
