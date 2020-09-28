@@ -34,6 +34,7 @@ import 链表.structure.ListNode;
 //你是否可以不用额外空间解决此题？
 public class Solution {
 
+    //Time:O(n)     Space:O(1)
     public ListNode detectCycle(ListNode head) {
 
         if (head == null || head.next == null) return null;

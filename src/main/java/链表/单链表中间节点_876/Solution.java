@@ -28,6 +28,7 @@ import 链表.structure.ListNode;
 // 给定链表的结点数介于 1 和 100 之间。
 public class Solution {
 
+    //Time:O(n)     Space:O(1)
     public ListNode middleNode(ListNode head) {
         if (head == null || head.next == null) return head;
 
