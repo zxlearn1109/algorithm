@@ -1,6 +1,7 @@
 package 链表.链表加一_369;
 
 import 链表.structure.ListNode;
+
 //用一个 非空 单链表来表示一个非负整数，然后将这个整数加一。
 //
 // 你可以假设这个整数除了 0 本身，没有任何前导的 0。
@@ -19,15 +20,15 @@ public class Solution {
     //Time:O(n)      Space:O(1)
     public ListNode plusOne(ListNode head) {
 
-        ListNode dummy = new ListNode(-1),notNine = dummy;
+        ListNode dummy = new ListNode(-1), notNine = dummy;
         dummy.next = head;
 
-        for(ListNode node = head;node != null ;node = node.next){
+        for (ListNode node = head; node != null; node = node.next) {
             if (node.val != 9) notNine = node;
         }
 
         notNine.val = notNine.val + 1;
-        for (ListNode node = notNine.next;node != null;node = node.next) node.val = 0;
+        for (ListNode node = notNine.next; node != null; node = node.next) node.val = 0;
 
         return dummy == notNine ? dummy : dummy.next;
     }
