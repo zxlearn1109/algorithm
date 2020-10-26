@@ -47,7 +47,26 @@ public class Solution {
                 continue;
             }
             path.add(nums[i]);
-            backtracking(nums, len - 1, i+1, path, result);
+            backtracking(nums, len - 1, i + 1, path, result);
+            path.remove(path.size() - 1);
+        }
+    }
+
+    // Time: O(2^n), Space: O(n)
+    public List<List<Integer>> subsets2(int[] nums) {
+        if (nums == null) return Collections.EMPTY_LIST;
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> path = new ArrayList<>();
+        backtracking(nums, 0, path, result);
+        return result;
+    }
+    //针对回溯的每一步都保存其结果集
+
+    private void backtracking(int[] nums, int start, List<Integer> path, List<List<Integer>> result) {
+        result.add(new ArrayList<>(path));
+        for (int i = start; i < nums.length; i++) {
+            path.add(nums[i]);
+            backtracking(nums, i + 1, path, result);
             path.remove(path.size() - 1);
         }
     }
