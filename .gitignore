@@ -49,3 +49,16 @@ hs_err_pid*
 /.gradle/buildOutputCleanup/outputFiles.bin
 /.gradle/checksums/sha1-checksums.bin
 /.idea/vcs.xml
+/.gradle/5.2.1/executionHistory/executionHistory.bin
+/.gradle/5.2.1/executionHistory/executionHistory.lock
+/.gradle/4.9/fileContent/fileContent.lock
+/.gradle/4.9/fileHashes/fileHashes.bin
+/.gradle/5.2.1/fileHashes/fileHashes.bin
+/.gradle/4.9/fileHashes/fileHashes.lock
+/.gradle/5.2.1/fileHashes/fileHashes.lock
+/.gradle/5.2.1/gc.properties
+/.gradle/vcsWorkingDirs/gc.properties
+/.gradle/4.9/fileChanges/last-build.bin
+/.gradle/5.2.1/fileChanges/last-build.bin
+/.gradle/4.9/taskHistory/taskHistory.bin
+/.gradle/4.9/taskHistory/taskHistory.lock
