@@ -31,11 +31,40 @@
 // 👍 611 👎 0
 package 回溯.课程表_207;
 
+import java.util.*;
+
 public class Solution {
 
     public boolean canFinish(int numCourses, int[][] prerequisites) {
+        if (prerequisites == null || prerequisites.length == 0
+                || prerequisites[0] == null || prerequisites[0].length == 0)
+            return true;
 
-        return false;
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) graph.add(new LinkedList<>());
+
+        Map<Integer, Integer> indepthMap = new HashMap<>();
+        for (int[] arr : prerequisites) {
+            graph.get(arr[1]).add(arr[0]);
+            indepthMap.put(arr[0], indepthMap.getOrDefault(arr[0], 0) + 1);
+        }
+
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < numCourses; i++) {
+            if (indepthMap.getOrDefault(i, 0) == 0) stack.push(i);
+        }
+
+        while (!stack.isEmpty()) {
+            Integer pop = stack.pop();
+            List<Integer> list = graph.get(pop);
+            if (indepthMap.containsKey(pop)) indepthMap.remove(pop);
+            for (Integer per : list) {
+                indepthMap.put(per, indepthMap.get(per) - 1);
+                if (indepthMap.get(per) == 0) stack.push(per);
+            }
+        }
+
+        return indepthMap.isEmpty();
     }
 
 }
