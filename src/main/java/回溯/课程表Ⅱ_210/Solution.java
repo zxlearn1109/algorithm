@@ -1,47 +1,71 @@
 package 回溯.课程表Ⅱ_210;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Solution {
 
-    public static void main(String[] args) {
+    // Time: O(V+E), Space: O(V+E)
+    public int[] findOrderBFS(int numCourses, int[][] prerequisites) {
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) graph.add(new LinkedList<>());
 
-    }
+        int[] indregee = new int[numCourses];
+        for (int[] presites : prerequisites) {
+            graph.get(presites[1]).add(presites[0]);
+            indregee[presites[0]]++;
+        }
 
-    private static boolean hasCycle(List<List<Integer>> graph, boolean[] visited,
-                             boolean[] checked, List<Integer> order, int v) {
-        if (visited[v]) return true;
-        visited[v] = true;
-        for (int i : graph.get(v))
-            if (!checked[i] && hasCycle(graph, visited, checked, order, i))
-                return true;
-        checked[v] = true;
-        order.add(v);
-        visited[v] = false;
-        return false;
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < numCourses; i++) {
+            if (indregee[i] == 0) stack.push(i);
+        }
+        int[] res = new int[numCourses];
+        int cnt = 0;
+        while (!stack.isEmpty()) {
+            Integer val = stack.pop();
+            res[cnt++] = val;
+            List<Integer> enums = graph.get(val);
+            for (int per : enums) {
+                indregee[per]--;
+                if (indregee[per] == 0) stack.push(per);
+            }
+        }
+
+        return cnt == numCourses ? res : new int[0];
     }
 
     // Time: O(V+E), Space: O(V+E)
-    public static int[] findOrderDFS(int n, int[][] pairs) {
-        List<List<Integer>> graph = new ArrayList<>(n);
-        for (int i = 0; i < n; ++i)
-            graph.add(new LinkedList<>());
+    public int[] findOrderDFS(int numCourses, int[][] prerequisites) {
 
-        for (int[] pair : pairs)
-            graph.get(pair[1]).add(pair[0]);
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) graph.add(new LinkedList<>());
+        for (int[] presites : prerequisites) graph.get(presites[1]).add(presites[0]);
+        boolean[] visited = new boolean[numCourses];
+        boolean[] checked = new boolean[numCourses];
+        List<Integer> order = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) {
+            if (!checked[i] && hasCycle(i, order, visited, checked, graph)) return new int[]{};
+        }
 
-        boolean[] checked = new boolean[n];
-        boolean[] visited = new boolean[n];
-        List<Integer> list = new ArrayList<>(n);
-        for (int i = 0; i < n; ++i)
-            if (!checked[i] && hasCycle(graph, visited, checked, list, i))
-                return new int[]{};
+        int[] res = new int[numCourses];
+        for (int i = 0; i < numCourses; i++) {
+            res[i] = order.get(numCourses-i-1);
+        }
 
-        int[] order = new int[n];
-        for (int v : list)
-            order[--n] = v;
-        return order;
+        return res;
+    }
+
+    private boolean hasCycle(int position, List<Integer> order, boolean[] visited, boolean[] checked, List<List<Integer>> graph) {
+        if (visited[position]) return true;
+        List<Integer> enums = graph.get(position);
+        visited[position] = true;
+        for (int decide : enums) {
+            if (checked[decide]) continue;
+            if (hasCycle(decide, order, visited, checked, graph)) return true;
+        }
+        visited[position] = false;
+        checked[position] = true;
+        order.add(position);
+        return false;
     }
 }
