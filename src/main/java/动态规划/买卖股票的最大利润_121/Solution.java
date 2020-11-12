@@ -26,6 +26,8 @@ package 动态规划.买卖股票的最大利润_121;
 
 public class Solution {
 
+
+
     //Time:O(n)     Space:O(1)
     public int maxProfit(int[] prices) {
         if (prices == null || prices.length == 0) return 0;
