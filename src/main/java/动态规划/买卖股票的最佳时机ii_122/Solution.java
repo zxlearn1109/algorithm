@@ -43,15 +43,35 @@ package 动态规划.买卖股票的最佳时机ii_122;
 
 public class Solution {
 
+    //Time:O(n)     Space:O(n)
+    public int maxProfit2(int[] prices) {
+        if (prices == null || prices.length < 2) return 0;
+        int len = prices.length;
+        int[][] dp = new int[len][2];
+        dp[0][0] = 0;
+        dp[0][1] = -prices[0];
+        for (int i = 1; i < len; i++) {
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+            dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
+        }
+        return dp[len - 1][0];
+    }
+    //思路:看不懂状态方程，可以先看下https://leetcode-cn.com/circle/article/qiAgHn/
+    //1.T[i][k][0] = max(T[i-1][k][0],T[i-1][k][1] + prices[i])   = max(T[i-1][0],T[i-1][1] + prices[i])
+    //2.T[i][k][1] = max(T[i-1][k][1],T[i-1][k-1][0] - prices[i]) = max(T[i-1][1],T[i-1][0] - prices[i])
+    //T[i-1][k-1][0] == T[i-1][k][0] 可以理解为没有买入卖出，休息了一天。所以方程2可以直接省略第k项
+
     //Time:O(n)     Space:O(1)
     public int maxProfit(int[] prices) {
         if (prices == null || prices.length < 2) return 0;
-        int max = 0, pre = prices[0];
+        int max = 0, max1 = -prices[0];
         for (int i = 1; i < prices.length; i++) {
-            max = max + Math.max(0, prices[i] - pre);
-            pre = prices[i];
+            int oldMax = max;
+            max = Math.max(max, max1 + prices[i]);
+            max1 = Math.max(max1, oldMax - prices[i]);
         }
         return max;
     }
+    //maxprofit2的状态方程第i填的状态只依赖i-1的状态，可以继续空间优化
 
 }
